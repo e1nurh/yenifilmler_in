@@ -26,7 +26,7 @@ def visitor_ip_address(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     if ip+"\n" not in open('unique_visitors.txt').read():
-    	with open("unique_visitors.txt", "r+") as f:
+    	with open("unique_visitors.txt", "a") as f:
     		f.write(ip+"\n")
 
 def home(request):
