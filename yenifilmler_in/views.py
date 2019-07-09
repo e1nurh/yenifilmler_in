@@ -19,7 +19,18 @@ def get_films():
 			film_list[i[:-4]] = films
 	return film_list
 
+def visitor_ip_address(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    if ip+"\n" not in open('unique_visitors.txt').read():
+    	with open("unique_visitors.txt", "r+") as f:
+    		f.write(ip+"\n")
+
 def home(request):
+	visitor_ip_address(request)
 	films = get_films()
 	content = {'films':films}
 	return render(request, 'index.html', content)
@@ -44,3 +55,4 @@ def search(request):
 		return render(request, 'results.html', content)
 	else:
 		return redirect("/")
+
