@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+db.sqlite3
+ekranlardan.txt
+filmizlefilmsitesi.txt
+fullhdfilmsitesi.txt
+hdfilmsizle.txt
+ultrahdfilm.txt
